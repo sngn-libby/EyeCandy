@@ -10,8 +10,8 @@ def mouse_callback(event, x, y, flags, param):
 
     global hsv, lower_color1, upper_color1, lower_color2, upper_color2, lower_color3, upper_color3
 
-    # path = "C:/Object-detection/image/bookshelf_04.jpg"
-    # img_color = cv.imread(path, cv.IMREAD_COLOR)
+    path = "C:/Object-detection/image/bookshelf_04.jpg"
+    img_color = cv.imread(path, cv.IMREAD_COLOR)
 
     # (마우스 왼쪽버튼으로) 선택한 위치의 픽셀값을 HSV로 변환합니다.
     if event == cv.EVENT_LBUTTONDOWN:
