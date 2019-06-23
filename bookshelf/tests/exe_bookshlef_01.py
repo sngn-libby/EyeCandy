@@ -9,8 +9,6 @@ from bookshelf.function.img_write import img_write
 # namedwindow : detect_color
 # image4process : img_color
 
-path = "C:/Object-detection/image/bookshelf_04.jpg"
-img_color = cv.imread(path, cv.IMREAD_COLOR)
 
 cv.namedWindow('detect_color', cv.WINDOW_NORMAL)
 
@@ -31,8 +29,9 @@ upper_color3 = 0
 
 while (True):
 
-    # path = "C:/Object-detection/image/bookshelf_04.jpg"
-    # img_color = cv.imread(path, cv.IMREAD_COLOR)
+
+    path = "C:/Object-detection/image/bookshelf_04.jpg"
+    img_color = cv.imread(path, cv.IMREAD_COLOR)
     # cv.imshow('original img', img_color)
     # cv.waitKey(0)
 
