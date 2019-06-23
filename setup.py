@@ -7,9 +7,9 @@ from shutil import rmtree
 from setuptools import find_packages, setup, Command
 
 # Package meta-data.
-NAME = 'Function'
+NAME = 'EyeCandy'
 DESCRIPTION = 'to find bookshelf from the photo'
-URL = 'https://github.com/flashwoman/Object-detection/tree/master/testfiles_sey/Bookshelf/Function'
+URL = 'https://github.com/sngn-libby/EyeCandy'
 EMAIL = 'pluet_@naver.com'
 AUTHOR = 'libby'
 
