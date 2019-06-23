@@ -1,12 +1,16 @@
 import cv2 as cv
 import numpy as np
-from .Function.mouse_callback import mouse_callback, nothing
-from .Function.trace_object import trace_object
+from bookshelf.function.mouse_callback import mouse_callback, nothing
+from bookshelf.function.trace_object import trace_object
+from bookshelf.function.img_write import img_write
 
 
 # var name rule #
 # namedwindow : detect_color
 # image4process : img_color
+
+path = "C:/Object-detection/image/bookshelf_04.jpg"
+img_color = cv.imread(path, cv.IMREAD_COLOR)
 
 cv.namedWindow('detect_color', cv.WINDOW_NORMAL)
 
@@ -26,8 +30,9 @@ upper_color3 = 0
 
 
 while (True):
-    path = "C:/Object-detection/image/bookshelf_03.jpg"
-    img_color = cv.imread(path, cv.IMREAD_COLOR)
+
+    # path = "C:/Object-detection/image/bookshelf_04.jpg"
+    # img_color = cv.imread(path, cv.IMREAD_COLOR)
     # cv.imshow('original img', img_color)
     # cv.waitKey(0)
 
@@ -43,9 +48,10 @@ while (True):
     img_mask = img_mask1 | img_mask2 | img_mask3
 
     # get rid of 'noise' _ using morphologyEx
-    kernel = cv.getStructuringElement(cv.MORPH_GRADIENT, (3,3))
-    img_mask = cv.morphologyEx(img_mask, cv.MORPH_GRADIENT)
-    img_mask = cv.morphologyEx(img_mask, cv.MORPH_CLOSE)
+    # kernel = cv.getStructuringElement(cv.MORPH_GRADIENT, (3,3))
+    kernel = np.ones((3, 3), np.uint8)
+    img_mask = cv.morphologyEx(img_mask, cv.MORPH_GRADIENT, kernel)
+    img_mask = cv.morphologyEx(img_mask, cv.MORPH_CLOSE, kernel)
     cv.namedWindow('mask', cv.WINDOW_NORMAL)
     cv.imshow('mask', img_mask)
 
@@ -53,8 +59,7 @@ while (True):
     img_inv_mask = cv.bitwise_not(img_mask)
     cv.namedWindow('inv_mask', cv.WINDOW_NORMAL)
     cv.imshow('inv_mask', img_inv_mask)
-    path = "C:/Object-detection/image/img_bookshelf_mask.jpg"
-    cv.imwrite(path, img_mask)
+    img_write('bookshelf_mask', img_mask)
     img_book_only = cv.bitwise_and(img_color, img_color, mask=img_inv_mask)
     cv.namedWindow('img_book_only', cv.WINDOW_NORMAL)
     cv.imshow('img_book_only', img_book_only)
@@ -64,8 +69,7 @@ while (True):
     # function : trace_object(img_color, img_mask)
     trace_object(img_color, img_mask)
     cv.imshow('detect_color', img_bookshelf_only)
-    path = "C:/Object-detection/image/img_bookshelf_mask.jpg"
-    cv.imwrite(path, img_bookshelf_only)
+    img_write('remove_bookshelf', img_bookshelf_only)
 
     # ESC == quit
     if cv.waitKey(1) & 0xFF == 27:

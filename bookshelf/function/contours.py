@@ -1,19 +1,41 @@
 import cv2 as cv
+import os
+import glob
 from .display import display
 
 
-if __name__ == '__main__':
+def contours(img_book_only, img_color):
 
-    def contours(img):
-        gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-        display('gray', gray)
+    img_for_save = img_color.copy()
 
-        images,contours, hierarchy = cv.findContours(img, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
-        for i in range(len(contours)):
-            # 외곽선 추출
-            # if hierarchy[0][i][3] == -1:
-            #     cv.drawContours(img, contours, i, (255, 0, 0), 1)
-            cv.drawContours(img, contours, i, (255, 0, 0), 1)
-        display('contours', img)
+    # 1/ Threshold
+    ret, img_binary = cv.threshold(img_book_only, 127, 255, 0)
+    display("img_binary", img_binary)
 
-        return img
+    # 2. Contour 찾기
+    imgs, contours, hierarchy = cv.findContours(img_binary, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
+
+    # 3. 기존에 저장된 이미지 파일 삭제
+    path = "C:/flashwoman/Object-detection/EyeCandy/books/"
+    files = '*.jpg'  # 찾고 싶은 확장자
+    for file in glob.glob(os.path.join(path, files)):
+        os.remove(file)
+
+    ## 4. countour 그리고 저장하기.
+    count = 0
+    rect = []
+    for cnt in contours:
+        ## 1.  사각형 만들어 좌표얻기.
+        x, y, w, h = cv.boundingRect(cnt)
+        cv.rectangle(img_color, (x, y), (x + w, y + h), (3, 255, 4), 2)  # contour 그리기
+        rect.append([(x, y), (x + w, y + h)])  # rect에 좌표 저장 [Left_Top, Right_Bottom]
+
+        ## 2. 각각의 책 이미지 저장 ##
+        img_result = img_for_save[y: y + h, x: x + w]
+        img_path = f"C:/flashwoman/Object-detection/EyeCandy/books/img{count}.jpg"
+        cv.imwrite(img_path, img_result)
+
+        count = count + 1
+
+    display("result", img_color)
+    return img_book_only, rect
