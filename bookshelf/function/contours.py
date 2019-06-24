@@ -13,10 +13,10 @@ def contours(img_book_only, img_color):
     display("img_binary", img_binary)
 
     # 2. Contour 찾기
-    imgs, contours, hierarchy = cv.findContours(img_binary, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
+    contours, hierarchy = cv.findContours(img_binary, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
 
     # 3. 기존에 저장된 이미지 파일 삭제
-    path = "C:/flashwoman/Object-detection/EyeCandy/books/"
+    path = "C:/flashwoman/Object-detection/image/result/"
     files = '*.jpg'  # 찾고 싶은 확장자
     for file in glob.glob(os.path.join(path, files)):
         os.remove(file)
@@ -32,10 +32,14 @@ def contours(img_book_only, img_color):
 
         ## 2. 각각의 책 이미지 저장 ##
         img_result = img_for_save[y: y + h, x: x + w]
-        img_path = f"C:/flashwoman/Object-detection/EyeCandy/books/img{count}.jpg"
+        img_path = f"C:/flashwoman/Object-detection/image/result/book/img{count}.jpg"
         cv.imwrite(img_path, img_result)
 
         count = count + 1
 
+    path = "C:/flashwoman/Object-detection/image/result/result.jpg"
     display("result", img_color)
+    cv.imwrite(path, img_color)
+
+
     return img_book_only, rect

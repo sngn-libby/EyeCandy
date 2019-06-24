@@ -9,22 +9,28 @@ import random
 from pyclustering.utils import read_sample
 from pyclustering.nnet.som import som, type_conn, type_init, som_parameters
 from pyclustering.samples.definitions import FCPS_SAMPLES
+import csv
 
 
 # read sample 'Lsun' from file
-sample = read_sample(FCPS_SAMPLES.SAMPLE_LSUN)
-# [[2.0, 3.0], [0.387577, 0.268546], [0.17678, 0.582963], [3.277701, 0.814082], [0.387577, 0.17678], ...]
+# sample = read_sample(FCPS_SAMPLES.SAMPLE_LSUN)
+# with open('C:/flashwoman/Object-detection/testfiles_sey/books_coord.csv', 'r') as f:
+#     reader = csv.reader(f)
+#     sample = list(reader)
+#
+# print(len(sample))
+# required data_shape : [[2.0, 3.0], [0.387577, 0.268546], [0.17678, 0.582963], [3.277701, 0.814082], ...]
 
 # create SOM parameters
 parameters = som_parameters()
 
 # create self-organized feature map with size 7x7
-rows = 15  # five rows
-cols = 15  # five columns
-structure = type_conn.grid_four;  # each neuron has max. four neighbors.
+rows = 10  # five rows
+cols = 10  # five columns
+structure = type_conn.grid_four  # .grid_four : each neuron has max. four neighbors. / .grid_eight
 network = som(rows, cols, structure, parameters)
 
-# train network on 'Lsun' sample during 100 epouchs.
+# train network on 'coord' sample during 100 epochs.
 network.train(sample, 100)
 
 # simulate trained network using randomly modified point from input dataset.
