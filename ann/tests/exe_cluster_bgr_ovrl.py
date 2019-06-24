@@ -13,6 +13,12 @@ from bookshelf.function.contours import contours
 from bookshelf.function.preprocessing import preprocessing
 from bookshelf.function.display import display
 from pyclustering.nnet.som import som, type_conn, type_init, som_parameters
+from ann.function.sompy import SOMFactory
+import numpy as np
+import pandas as pd
+import glob
+import os
+
 
 
 # 1. load image
