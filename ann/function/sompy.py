@@ -515,6 +515,7 @@ class SOM(object):
         """
         Translates a best matching unit index to the corresponding
         matrix x,y coordinates.
+        :logic index = x + (y * width)
         :param bmu_ind: node index of the best matching unit
             (number of node from top left node)
         :returns: corresponding (x,y) coordinate
@@ -577,6 +578,7 @@ class SOM(object):
             index = np.argmax(first_diff) + 1
 
             print("Optimal K = " + str(index))
+            return index
 
         else:
             index = opt

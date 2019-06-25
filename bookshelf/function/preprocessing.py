@@ -18,12 +18,12 @@ def preprocessing(img_color, m=11, n=2):
     # display('gray', gray)
 
     ret, thresh = cv.threshold(gray, 10, 255, cv.THRESH_TOZERO)
-    display('thresh', thresh)
+    # display('thresh', thresh)
 
     ## 2. 책 사이 간격 벌리기
     kernel_s = np.ones((2,1), np.uint8)
     erode = cv.morphologyEx(gray, cv.MORPH_ERODE, kernel_s, iterations=2)
-    display('eroding for gap', erode)
+    # display('eroding for gap', erode)
 
     return erode
 
