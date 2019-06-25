@@ -10,7 +10,7 @@ def contours(img_book_only, img_color):
 
     # 1/ Threshold
     ret, img_binary = cv.threshold(img_book_only, 127, 255, 0)
-    display("img_binary", img_binary)
+    # display("img_binary", img_binary)
 
     # 2. Contour 찾기
     contours, hierarchy = cv.findContours(img_binary, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
@@ -38,7 +38,7 @@ def contours(img_book_only, img_color):
         count = count + 1
 
     path = "C:/flashwoman/Object-detection/image/result/result.jpg"
-    display("result", img_color)
+    # display("result", img_color)
     cv.imwrite(path, img_color)
 
 
