@@ -165,7 +165,7 @@ class View2DPacked(MapView):
 
         plt.subplots_adjust(hspace=h, wspace=w)
 
-        plt.show()
+        # plt.show()
 
 
 class View1D(MapView):

@@ -8,7 +8,7 @@ def contours(img_book_only, img_color):
 
     img_for_save = img_color.copy()
 
-    # 1/ Threshold
+    # 1. Threshold
     ret, img_binary = cv.threshold(img_book_only, 127, 255, 0)
     # display("img_binary", img_binary)
 

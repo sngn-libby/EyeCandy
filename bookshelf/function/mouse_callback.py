@@ -28,7 +28,7 @@ def mouse_callback(event, x, y, flags, param):
 
         # pixel 범위 설정하기
         if hsv[0] < 10:
-            print("case1 : warm_red-ish")
+            # print("case1 : warm_red-ish")
 
             lower_color1 = np.array([ (hsv[0]-10+180), threshold, threshold ])
             upper_color1 = np.array([ 180, 255, 255 ])
@@ -38,7 +38,7 @@ def mouse_callback(event, x, y, flags, param):
             upper_color3 = np.array([ (hsv[0]+10), 255, 255 ])
 
         elif hsv[0] > 170:
-            print("case2 : cool_red-ish2")
+            # print("case2 : cool_red-ish2")
 
             lower_color1 = np.array([hsv[0], threshold, threshold])
             upper_color1 = np.array([180, 255, 255])
@@ -48,7 +48,7 @@ def mouse_callback(event, x, y, flags, param):
             upper_color3 = np.array([(hsv[0] + 10), 255, 255])
 
         else:
-            print("case3 : not red")
+            # print("case3 : not red")
 
             lower_color1 = np.array([hsv[0], threshold, threshold])
             upper_color1 = np.array([(hsv[0]+5), 40, 255])
@@ -57,10 +57,10 @@ def mouse_callback(event, x, y, flags, param):
             lower_color3 = np.array([hsv[0]-5, threshold, threshold])
             upper_color3 = np.array([hsv[0], 40, 255])
 
-        print("hsv:", hsv[0])
-        print("@1", lower_color1, "~", upper_color1)
-        print("@2", lower_color2, "~", upper_color2)
-        print("@3", lower_color3, "~", upper_color3)
+        # print("hsv:", hsv[0])
+        # print("@1", lower_color1, "~", upper_color1)
+        # print("@2", lower_color2, "~", upper_color2)
+        # print("@3", lower_color3, "~", upper_color3)
 
 
 # 사용시 img_color 정의 필요
