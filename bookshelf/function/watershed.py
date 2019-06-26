@@ -25,7 +25,7 @@ def watershed(img_color, m=3, n=3):
     ret, sure_fg = cv.threshold(dist_transform, 0.7*dist_transform.max(), 255,0)
 
     unknown = cv.subtract(sure_bg, sure_fg)
-    display(unknown)
+    # display(unknown)
 
     ret, markers = cv.connectedComponents(sure_fg)
     markers = markers +1
@@ -39,6 +39,8 @@ def watershed(img_color, m=3, n=3):
     # display('sure_foreground', sure_fg)
     # display('markers', markers)
     # display('watershed result', img_watershed)
+
+    return img_watershed
 
 # img = cv.imread('C:/fleshwoman/Object-detection/image/water_coins.jpg')
 # img[markers == -1] = [255,0,0]

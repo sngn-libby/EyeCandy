@@ -39,7 +39,7 @@ class UMatrixView(MatplotView):
         coord = som.bmu_ind_to_xy(proj)
 
         self._fig, ax = plt.subplots(1, 1)
-        imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
+        # imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
 
         if contooor:
             mn = np.min(umat.flatten())
@@ -79,7 +79,7 @@ class UMatrixView(MatplotView):
             # 'Laplacian of Gaussian'
             blobs = blob_log(image, max_sigma=5, num_sigma=4, threshold=.152)
             blobs[:, 2] = blobs[:, 2] * sqrt(2)
-            imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
+            # imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
             sel_points = list()
 
             for blob in blobs:
@@ -94,5 +94,5 @@ class UMatrixView(MatplotView):
                          coord[:, 0][sel_point[:, 0]], '.r')
                 sel_points.append(sel_point[:, 0])
 
-        plt.show()
+        # plt.show()
         return sel_points, umat
