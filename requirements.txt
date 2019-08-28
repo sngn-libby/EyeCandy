@@ -54,7 +54,7 @@ matplotlib==3.1.0
 menuinst==1.4.14
 mock==3.0.5
 networkx==2.3
-nltk==3.4.1
+nltk==3.4.5
 numpy==1.15.4
 oauthlib==3.0.1
 opencv-contrib-python==4.1.0.25
