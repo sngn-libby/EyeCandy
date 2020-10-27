@@ -16,7 +16,7 @@ color-transfer==0.1
 colorama==0.4.1
 conda==4.6.14
 cpp==1.0
-cryptography==2.4.2
+cryptography==3.2
 cycler==0.10.0
 decorator==4.4.0
 defusedxml==0.6.0
